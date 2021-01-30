@@ -1,29 +1,36 @@
-public void setup()
-{
-  String lines[] = loadStrings("palindromes.txt");
-  System.out.println("there are " + lines.length + " lines");
-  for (int i=0; i < lines.length; i++) 
-  {
-    if(palindrome(lines[i])==true)
-    {
-      System.out.println(lines[i] + " IS a palindrome.");
-    }
-    else
-    {
-      System.out.println(lines[i] + " is NOT a palindrome.");
-    }
-  }
-}
-public boolean palindrome(String word)
-{
-  //your code here
-  return false;
-}
-public String reverse(String str)
-{
-    String sNew = new String();
-    //your code here
-    return sNew;
+public String reverse (String word){
+  String toReturn = "";
+  for(int i = word.length() -1; i >= 0; i--)
+    toReturn += word.charAt(i);
+  return toReturn;
 }
 
+public String onlyLetters(String word){
+  String toReturn = "";
+  for(int i = 0; i < word.length(); i++)
+    if(Character.isLetter(word.charAt(i)))
+      toReturn += word.charAt(i);      
+  return toReturn;
+}
 
+public boolean palindrome(String word){
+  String wordL = word.toLowerCase();
+  wordL = onlyLetters(wordL);
+  String wordM = word.toLowerCase();
+  
+  wordM = onlyLetters(wordM);
+  wordM = reverse(wordM);
+
+  return wordM.equals(wordL);
+}
+void setup(){
+  //String lines[] = loadStrings("palindromes.txt");
+  String lines[] = {"test", "rotator", "rewriter", "nurses run", "Madam , I'm Adam!", "A Man! A Plan! A Canal! Panama!"};
+    System.out.println("there are " + lines.length + " lines");
+    for (int i=0; i < lines.length; i++){
+      print(lines[i] + " ");
+      print( palindrome(lines[i])? "is": "is NOT");
+      println(" a palindrome");      
+    }
+       
+}
